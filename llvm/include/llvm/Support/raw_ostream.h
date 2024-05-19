@@ -174,9 +174,7 @@ public:
     SetBufferAndMode(nullptr, 0, BufferKind::Unbuffered);
   }
 
-  size_t GetNumBytesInBuffer() const {
-    return OutBufCur - OutBufStart;
-  }
+  size_t GetNumBytesInBuffer() const { return OutBufCur - OutBufStart; }
 
   //===--------------------------------------------------------------------===//
   // Data Output Interface
@@ -652,9 +650,7 @@ class raw_string_ostream : public raw_ostream {
   uint64_t current_pos() const override { return OS.size(); }
 
 public:
-  explicit raw_string_ostream(std::string &O) : OS(O) {
-    SetUnbuffered();
-  }
+  explicit raw_string_ostream(std::string &O) : OS(O) { SetUnbuffered(); }
 
   /// Returns the string's reference. In most cases it is better to simply use
   /// the underlying std::string directly.
