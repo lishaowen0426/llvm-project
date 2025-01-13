@@ -29,6 +29,7 @@ MODULE_ANALYSIS("pass-instrumentation", PassInstrumentationAnalysis(PIC))
 MODULE_ANALYSIS("profile-summary", ProfileSummaryAnalysis())
 MODULE_ANALYSIS("stack-safety", StackSafetyGlobalAnalysis())
 MODULE_ANALYSIS("verify", VerifierAnalysis())
+MODULE_ANALYSIS("svf-unsafe", SVFAnalysis())
 
 #ifndef MODULE_ALIAS_ANALYSIS
 #define MODULE_ALIAS_ANALYSIS(NAME, CREATE_PASS)                               \
@@ -140,6 +141,7 @@ MODULE_PASS("tsan-module", ModuleThreadSanitizerPass())
 MODULE_PASS("verify", VerifierPass())
 MODULE_PASS("view-callgraph", CallGraphViewerPass())
 MODULE_PASS("wholeprogramdevirt", WholeProgramDevirtPass())
+MODULE_PASS("svf-transform", SVFTransform())
 #undef MODULE_PASS
 
 #ifndef MODULE_PASS_WITH_PARAMS
@@ -456,7 +458,7 @@ FUNCTION_PASS("view-post-dom", PostDomViewer())
 FUNCTION_PASS("view-post-dom-only", PostDomOnlyViewer())
 FUNCTION_PASS("wasm-eh-prepare", WasmEHPreparePass())
 FUNCTION_PASS("unsafe-alloca", UnsafeAllocaPass())
-FUNCTION_PASS("replace-insertvalue-undef", ReplaceInsertValueUndef())
+FUNCTION_PASS("replace-undef", ReplaceInsertValueUndef())
 #undef FUNCTION_PASS
 
 #ifndef FUNCTION_PASS_WITH_PARAMS

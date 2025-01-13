@@ -1184,7 +1184,8 @@ find_package(SVF REQUIRED CONFIG PATHS /home/swli/rust-isolation/rust/src/SVF/De
 message(STATUS "SVF INCLUDE: ${SVF_INSTALL_INCLUDE_DIR}. SVF LIB: ${SVF_INSTALL_LIB_DIR}")
 
 include_directories(${SVF_INSTALL_INCLUDE_DIR})
-link_directories(${SVF_INSTALL_INCLUDE_DIR})
+link_directories(${SVF_INSTALL_LIB_DIR})
+
 
 # Put this before tblgen. Else we have a circular dependence.
 add_subdirectory(lib/Demangle)

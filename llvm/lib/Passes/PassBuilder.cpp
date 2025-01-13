@@ -105,6 +105,8 @@
 #include "llvm/IR/Verifier.h"
 #include "llvm/IRPrinter/IRPrintingPasses.h"
 #include "llvm/Passes/OptimizationLevel.h"
+#include "llvm/SVF/SVFAnalysis.h"
+#include "llvm/SVF/SVFTransform.h"
 #include "llvm/Support/CommandLine.h"
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/ErrorHandling.h"
