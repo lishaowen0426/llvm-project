@@ -24,7 +24,7 @@ PreservedAnalyses UnsafeAllocaPass::run(Function &F,
   for (auto &BB : F) {
     for (auto &I : BB) {
       if (auto *AI = dyn_cast<AllocaInst>(&I)) {
-        if (MDNode *MD = AI->getMetadata("unsafety" /*kind*/)) {
+        if (MDNode *MD = AI->getMetadata("miri-target" /*kind*/)) {
           for (unsigned i = 0; i < MD->getNumOperands(); i++) {
             if (auto *MDStr = dyn_cast<MDString>(MD->getOperand(i))) {
               if (MDStr->getString() == "unsafe_alloca") {
