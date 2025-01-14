@@ -8,11 +8,6 @@ using namespace std;
 PreservedAnalyses SVFTransform::run(Module &M, ModuleAnalysisManager &MAM) {
   auto &Result = MAM.getResult<SVFAnalysis>(M);
 
-  errs() << "before transform\n";
-  for (auto ai : Result) {
-    errs() << *ai << "\n";
-  }
-
   LLVMContext &ctx = M.getContext();
   unsigned mkind = ctx.getMDKindID("svf-target");
   MDNode *mnode = MDNode::get(ctx, MDString::get(ctx, "unsafe_alloca"));
