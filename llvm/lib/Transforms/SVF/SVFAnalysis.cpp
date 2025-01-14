@@ -189,7 +189,11 @@ void SvfTainter::propagateTaint() {
 
 SVFAnalysis::Result SVFAnalysis::run(Module &M, ModuleAnalysisManager &MAM) {
   SvfTainter tainter(&M);
+  std::cout << "before analysis"
+            << "\n";
   tainter.process();
+  std::cout << "after analysis"
+            << "\n";
 
   return tainter.result();
 }
