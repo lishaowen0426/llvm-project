@@ -8,9 +8,9 @@ using namespace std;
 PreservedAnalyses SVFTransform::run(Module &M, ModuleAnalysisManager &MAM) {
   auto &Result = MAM.getResult<SVFAnalysis>(M);
 
-  outs() << "before transform\n";
+  errs() << "before transform\n";
   for (auto ai : Result) {
-    outs() << *ai << "\n";
+    errs() << *ai << "\n";
   }
 
   LLVMContext &ctx = M.getContext();
