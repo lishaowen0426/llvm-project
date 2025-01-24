@@ -159,6 +159,13 @@ void SvfTainter::processDestVal(const Value *dest) {
       } else if (auto extractElemInst = dyn_cast<ExtractElementInst>(
                      mSet->getLLVMValue(current->getValue()))) {
         return processDestVal(extractElemInst->getOperand(0));
+      } else if (auto phiInst = dyn_cast<PHINode>(
+                     mSet->getLLVMValue(current->getValue()))) {
+        for (unsigned i = 0; i < phiInst->getNumIncomingValues(); i++) {
+          auto *incomingValue = phiInst->getIncomingValue(i);
+          processDestVal(incomingValue);
+        }
+        return;
       }
     }
 
