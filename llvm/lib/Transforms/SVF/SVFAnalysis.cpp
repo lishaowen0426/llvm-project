@@ -178,6 +178,11 @@ void SvfTainter::processDestVal(const Value *dest) {
           processDestVal(incomingValue);
         }
         return;
+      } else if (auto shuffle = dyn_cast<ShuffleVectorInst>(
+                     mSet->getLLVMValue(current->getValue()))) {
+        processDestVal(shuffle->getOperand(0));
+        processDestVal(shuffle->getOperand(1));
+        return;
       }
     }
 
