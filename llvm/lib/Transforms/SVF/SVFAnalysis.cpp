@@ -116,6 +116,18 @@ void SvfTainter::processIRForTaintSource(Instruction &I) {
     } else {
       taintSources.push_back(TaintSource{callInst, args});
     }
+  } else if (auto *invokeInst = dyn_cast<InvokeInst>(&I)) {
+
+    std::vector<Value *> args;
+    for (unsigned i = 0; i < invokeInst->arg_size(); ++i) {
+      llvm::Value *arg = invokeInst->getArgOperand(i); // Get the argument
+      args.push_back(arg);
+    }
+    if (invokeInst->getType()->isVoidTy()) {
+      taintSources.push_back(TaintSource{nullptr, args});
+    } else {
+      taintSources.push_back(TaintSource{callInst, args});
+    }
   }
 }
 
