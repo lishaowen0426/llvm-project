@@ -183,6 +183,11 @@ void SvfTainter::processDestVal(const Value *dest) {
         processDestVal(shuffle->getOperand(0));
         processDestVal(shuffle->getOperand(1));
         return;
+      } else if (auto select = dyn_cast<SelectInst>(
+                     mSet->getLLVMValue(current->getValue()))) {
+        processDestVal(select->getTrueValue());
+        processDestVal(select->getFalseValue());
+        return;
       }
     }
 
