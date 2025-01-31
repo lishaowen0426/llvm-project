@@ -201,6 +201,7 @@ void SvfTainter::processDestVal(const Value *dest) {
   }
 }
 
+
 void SvfTainter::propagateTaint() {
 
   for (auto src : taintSources) {
