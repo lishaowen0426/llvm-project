@@ -8,11 +8,7 @@ add_llvm_component_library(
 
     ADDITIONAL_HEADER_DIRS
         ${LLVM_MAIN_INCLUDE_DIR}/llvm/SVF
-       ${SVF_INSTALL_INCLUDE_DIR} 
 
-    LINK_LIBS
-        SvfLLVM
-        SvfCore
     LINK_COMPONENTS
         Analysis
         BitReader

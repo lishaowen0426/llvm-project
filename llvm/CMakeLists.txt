@@ -1179,12 +1179,12 @@ if(LLVM_INCLUDE_TESTS)
 endif()
 
 #find SVF package
-find_package(SVF REQUIRED CONFIG PATHS /home/swli/rust-isolation/rust/src/SVF/Debug-build/lib/cmake/SVF NO_DEFAULT_PATH)
+#find_package(SVF REQUIRED CONFIG PATHS /home/swli/rust-isolation/rust/src/SVF/Debug-build/lib/cmake/SVF NO_DEFAULT_PATH)
 
-message(STATUS "SVF INCLUDE: ${SVF_INSTALL_INCLUDE_DIR}. SVF LIB: ${SVF_INSTALL_LIB_DIR}")
+#message(STATUS "SVF INCLUDE: ${SVF_INSTALL_INCLUDE_DIR}. SVF LIB: ${SVF_INSTALL_LIB_DIR}")
 
-include_directories(${SVF_INSTALL_INCLUDE_DIR})
-link_directories(${SVF_INSTALL_LIB_DIR})
+#include_directories(${SVF_INSTALL_INCLUDE_DIR})
+#link_directories(${SVF_INSTALL_LIB_DIR})
 
 
 # Put this before tblgen. Else we have a circular dependence.
