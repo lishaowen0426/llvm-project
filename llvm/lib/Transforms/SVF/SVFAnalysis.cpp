@@ -1,11 +1,11 @@
 #include "llvm/SVF/SVFAnalysis.h"
-/*
+
 #include "Graphs/SVFG.h"
 #include "SVF-LLVM/LLVMUtil.h"
 #include "SVF-LLVM/SVFIRBuilder.h"
 #include "Util/SVFUtil.h"
 #include "WPA/Andersen.h"
-*/
+
 #include "llvm/IR/Instruction.h"
 #include "llvm/IR/LLVMContext.h"
 #include "llvm/IR/Metadata.h"
@@ -24,11 +24,11 @@
 using namespace llvm;
 using namespace std;
 
-//using namespace SVF;
+using namespace SVF;
 
 AnalysisKey SVFAnalysis::Key;
 
-/*
+
 typedef struct {
   Value *dest;
   std::vector<Value *> val;
@@ -220,15 +220,15 @@ void SvfTainter::propagateTaint() {
     }
   }
 }
-*/
+
 
 SVFAnalysis::Result SVFAnalysis::run(Module &M, ModuleAnalysisManager &MAM) {
-    /*
+
   SvfTainter tainter(&M);
 
   tainter.process();
 
   return tainter.result();
-  */
+
   return std::set<const AllocaInst*>();
 }

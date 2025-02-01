@@ -1,0 +1,16 @@
+file(GLOB_RECURSE SVF_CORE_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}  *.cpp)
+
+
+add_llvm_component_library(LLVMSvfCore
+    ${SVF_CORE_SOURCES}
+
+)
+
+
+
+target_include_directories(LLVMSvfCore
+    PUBLIC
+    $<BUILD_INTERFACE:${LLVM_MAIN_INCLUDE_DIR}/svf>
+    $<BUILD_INTERFACE:${LLVM_INCLUDE_DIR}/svf>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/svf>
+)

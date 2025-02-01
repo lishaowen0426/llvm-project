@@ -7,21 +7,18 @@ add_llvm_component_library(
     SVFTransform.cpp
 
     ADDITIONAL_HEADER_DIRS
-        ${LLVM_MAIN_INCLUDE_DIR}/llvm/SVF
+        ${LLVM_MAIN_INCLUDE_DIR}/svf
+        ${LLVM_MAIN_INCLUDE_DIR}/svf-llvm
 
     LINK_COMPONENTS
+        SvfCore
+        SvfLLVM
         Analysis
         BitReader
         BitWriter
         Core
-        FrontendOpenMP
-        InstCombine
         IRReader
-        Linker
-        Object
-        ProfileData
         Scalar
         Support
-        TargetParser
         TransformUtils
 )

@@ -45,6 +45,8 @@ if (LLVM_INCLUDE_TESTS)
 endif()
 add_subdirectory(WindowsDriver)
 add_subdirectory(WindowsManifest)
+add_subdirectory(SvfCore)
+add_subdirectory(SvfLLVM)
 
 set(LLVMCONFIGLIBRARYDEPENDENCIESINC "${LLVM_BINARY_DIR}/tools/llvm-config/LibraryDependencies.inc")
 
@@ -65,3 +67,25 @@ endif()
 # Component post-processing
 LLVMBuildResolveComponentsLink()
 LLVMBuildGenerateCFragment(OUTPUT ${LLVMCONFIGLIBRARYDEPENDENCIESINC})
+
+# Prepare SVF
+set(SVF_INSTALL_ROOT ${CMAKE_INSTALL_PREFIX})
+set(SVF_INSTALL_BIN_DIR ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BINDIR})
+set(SVF_INSTALL_LIB_DIR ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR})
+set(SVF_INSTALL_INCLUDE_DIR ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_INCLUDEDIR})
+
+
+
+
+
+configure_file(
+  ${LLVM_MAIN_INCLUDE_DIR}/svf/Config/config.in
+  ${LLVM_INCLUDE_DIR}/svf/Util/config.h
+)
+
+install(DIRECTORY  ${LLVM_MAIN_INCLUDE_DIR}/svf  ${LLVM_MAIN_INCLUDE_DIR}/svf-llvm
+    DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}"
+    COMPONENT svf-headers
+    FILES_MATCHING
+    PATTERN "*.h"
+)
