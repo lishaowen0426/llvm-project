@@ -48,6 +48,7 @@ add_subdirectory(WindowsManifest)
 add_subdirectory(SvfCore)
 add_subdirectory(SvfLLVM)
 
+
 set(LLVMCONFIGLIBRARYDEPENDENCIESINC "${LLVM_BINARY_DIR}/tools/llvm-config/LibraryDependencies.inc")
 
 # Special components which don't have any source attached but aggregate other
