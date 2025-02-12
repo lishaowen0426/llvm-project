@@ -200,8 +200,8 @@ void SvfTainter::processDestVal(const Value *dest) {
     }
 
   } else {
-    std::cerr << "SVF value: " << *svfval << " has no pag node\n";
-    abort();
+    //std::cerr << "SVF value: " << *svfval << " has no pag node\n";
+    //abort();
   }
 }
 
