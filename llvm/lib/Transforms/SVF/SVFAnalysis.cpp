@@ -28,7 +28,6 @@ using namespace SVF;
 
 AnalysisKey SVFAnalysis::Key;
 
-
 typedef struct {
   Value *dest;
   std::vector<Value *> val;
@@ -70,6 +69,7 @@ public:
     }
   }
   void process() {
+    llvm::outs() << "SVF Processing module: " << M->getName() << "\n";
     collectTaintSources();
     propagateTaint();
   }
@@ -200,11 +200,10 @@ void SvfTainter::processDestVal(const Value *dest) {
     }
 
   } else {
-    //std::cerr << "SVF value: " << *svfval << " has no pag node\n";
-    //abort();
+    // std::cerr << "SVF value: " << *svfval << " has no pag node\n";
+    // abort();
   }
 }
-
 
 void SvfTainter::propagateTaint() {
 
@@ -221,7 +220,6 @@ void SvfTainter::propagateTaint() {
   }
 }
 
-
 SVFAnalysis::Result SVFAnalysis::run(Module &M, ModuleAnalysisManager &MAM) {
 
   SvfTainter tainter(&M);
@@ -230,5 +228,5 @@ SVFAnalysis::Result SVFAnalysis::run(Module &M, ModuleAnalysisManager &MAM) {
 
   return tainter.result();
 
-  return std::set<const AllocaInst*>();
+  return std::set<const AllocaInst *>();
 }
