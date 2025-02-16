@@ -71,6 +71,7 @@ public:
   void process() {
     llvm::outs() << "SVF Processing module: " << M->getName() << "\n";
     collectTaintSources();
+    llvm::outs() << "SVF propagate taint " << "\n";
     propagateTaint();
   }
 
@@ -79,6 +80,8 @@ public:
 
 void SvfTainter::collectTaintSources() {
   for (auto &F : *M) {
+    llvm::outs() << "SVF collect taint sources for function: " << F.getName()
+                 << "\n";
     for (auto &BB : F) {
       for (auto &I : BB) {
         if (MDNode *MD = I.getMetadata("svf")) {
@@ -95,6 +98,7 @@ void SvfTainter::collectTaintSources() {
 /// but it is not the only instruction that can change memory.
 /// There are other instructions that can also modify memory content.
 void SvfTainter::processIRForTaintSource(Instruction &I) {
+  llvm::outs() << "SVF processIRForTaintSource: " << I << "\n";
   if (auto *allocaInst = dyn_cast<AllocaInst>(&I)) {
     taintSources.push_back(TaintSource{allocaInst, {}});
   } else if (auto *storeInst = dyn_cast<StoreInst>(&I)) {
@@ -193,6 +197,10 @@ void SvfTainter::processDestVal(const Value *dest) {
         processDestVal(select->getFalseValue());
         return;
       }
+      std::cout << "SVF processDestVal, has value but not processed: "
+                << *current->getValue() << "\n";
+    } else {
+      std::cout << "SVF processDestVal, has no value\n";
     }
 
     for (auto e : current->getInEdges()) {
@@ -227,6 +235,4 @@ SVFAnalysis::Result SVFAnalysis::run(Module &M, ModuleAnalysisManager &MAM) {
   tainter.process();
 
   return tainter.result();
-
-  return std::set<const AllocaInst *>();
 }
