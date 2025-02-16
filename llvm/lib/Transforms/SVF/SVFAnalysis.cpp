@@ -80,8 +80,7 @@ public:
 
 void SvfTainter::collectTaintSources() {
   for (auto &F : *M) {
-    llvm::outs() << "SVF collect taint sources for function: " << F.getName()
-                 << "\n";
+
     for (auto &BB : F) {
       for (auto &I : BB) {
         if (MDNode *MD = I.getMetadata("svf")) {
@@ -98,7 +97,6 @@ void SvfTainter::collectTaintSources() {
 /// but it is not the only instruction that can change memory.
 /// There are other instructions that can also modify memory content.
 void SvfTainter::processIRForTaintSource(Instruction &I) {
-  llvm::outs() << "SVF processIRForTaintSource: " << I << "\n";
   if (auto *allocaInst = dyn_cast<AllocaInst>(&I)) {
     taintSources.push_back(TaintSource{allocaInst, {}});
   } else if (auto *storeInst = dyn_cast<StoreInst>(&I)) {
