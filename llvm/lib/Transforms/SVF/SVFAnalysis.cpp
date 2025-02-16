@@ -69,9 +69,7 @@ public:
     }
   }
   void process() {
-    llvm::outs() << "SVF Processing module: " << M->getName() << "\n";
     collectTaintSources();
-    llvm::outs() << "SVF propagate taint " << "\n";
     propagateTaint();
   }
 
@@ -195,10 +193,10 @@ void SvfTainter::processDestVal(const Value *dest) {
         processDestVal(select->getFalseValue());
         return;
       }
-      std::cout << "SVF processDestVal, has value but not processed: "
-                << *current->getValue() << "\n";
+      // std::cout << "SVF processDestVal, has value but not processed: "
+      //           << *current->getValue() << "\n";
     } else {
-      std::cout << "SVF processDestVal, has no value\n";
+      // std::cout << "SVF processDestVal, has no value\n";
     }
 
     for (auto e : current->getInEdges()) {
